@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== GLOBAL NEON STYLE (R2: Red + Purple Gradient, Cyan Highlights) ===== */
+/* ===== GLOBAL NEON STYLE (R2 + R-LASER + G3) ===== */
 body {
     margin: 0;
     height: 100vh;
@@ -42,15 +42,18 @@ body {
 .title {
     font-size: 2.8rem;
     margin-bottom: 20px;
-    text-shadow: 0 0 25px #ff003c, 0 0 40px #ff003c;
     font-weight: bold;
+    text-shadow:
+        0 0 25px #ff002b,
+        0 0 60px #ff002b,
+        0 0 120px #ff002b;
 }
 
 /* ===== MAIN BOX ===== */
 .box {
     height: 150px;
     background: rgba(60, 0, 20, 0.4);
-    border: 4px solid #ff003c;
+    border: 4px solid #ff002b;
     border-radius: 20px;
     display: flex;
     justify-content: center;
@@ -62,8 +65,10 @@ body {
     text-align: center;
     transition: 0.3s;
     box-shadow:
-        0 0 25px #ff003c,
-        0 0 50px #7a00ff inset;
+        0 0 40px #ff002b,
+        0 0 90px #ff002b,
+        0 0 150px #ff002b,
+        inset 0 0 40px #7a00ff;
 }
 
 /* ===== ROLLING ANIMATION ===== */
@@ -84,15 +89,20 @@ body {
     border-radius: 12px;
     cursor: pointer;
     color: #fff;
-    background: linear-gradient(45deg, #ff003c, #7a00ff);
-    box-shadow: 0 0 30px #ff003c, 0 0 60px #7a00ff;
+    background: linear-gradient(45deg, #ff002b, #7a00ff);
+    box-shadow:
+        0 0 40px #ff002b,
+        0 0 90px #ff002b,
+        0 0 150px #ff002b;
     transition: 0.2s;
     font-weight: bold;
 }
 
 .btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 50px #ff003c, 0 0 80px #7a00ff;
+    box-shadow:
+        0 0 60px #ff002b,
+        0 0 120px #ff002b;
 }
 
 /* ===== CONFETTI ===== */
@@ -130,11 +140,11 @@ body {
     max-width: 700px;
     background: rgba(40, 0, 20, 0.95);
     border-radius: 18px;
-    border: 3px solid #ff003c;
+    border: 3px solid #ff002b;
     box-shadow:
-        0 0 25px #ff003c,
-        0 0 60px #7a00ff,
-        inset 0 0 20px rgba(0,255,255,0.4);
+        0 0 40px #ff002b,
+        0 0 120px #ff002b,
+        inset 0 0 40px rgba(0,255,255,0.4);
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -160,7 +170,7 @@ body {
     min-height: 260px;
     resize: vertical;
     border-radius: 12px;
-    border: 2px solid #ff003c;
+    border: 2px solid #ff002b;
     background: rgba(0, 0, 0, 0.85);
     color: #00eaff;
     padding: 12px;
@@ -188,25 +198,29 @@ body {
 }
 
 .editor-save {
-    background: linear-gradient(45deg, #ff003c, #7a00ff);
+    background: linear-gradient(45deg, #ff002b, #7a00ff);
     color: #fff;
-    box-shadow: 0 0 20px #ff003c;
+    box-shadow:
+        0 0 40px #ff002b,
+        0 0 120px #ff002b;
 }
 
 .editor-save:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 35px #ff003c;
+    box-shadow:
+        0 0 60px #ff002b,
+        0 0 150px #ff002b;
 }
 
 .editor-cancel {
     background: rgba(255,255,255,0.15);
     color: #fff;
-    border: 1px solid #ff003c;
+    border: 1px solid #ff002b;
 }
 
 .editor-cancel:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 25px #ff003c;
+    box-shadow: 0 0 40px #ff002b;
 }
 </style>
 </head>
@@ -270,7 +284,7 @@ let challenges = [
 ];
 
 let rollingInterval;
-let rollSpeed = 40;
+let rollSpeed = 90;
 let rollTime = 3000; // 3 seconds
 
 const box = document.getElementById("challengeBox");
@@ -280,7 +294,7 @@ const rollSound = new Audio("roll.ogg");
 rollSound.loop = true;
 rollSound.volume = 0.5;
 
-/* ===== REAL SLOT MACHINE ACCELERATION + DECELERATION ===== */
+/* ===== REAL SLOT MACHINE ACCELERATION + DECELERATION (SYNCED) ===== */
 function startRolling() {
     if (rollingInterval) return;
 
@@ -289,22 +303,22 @@ function startRolling() {
     rollSound.currentTime = 0;
     rollSound.play();
 
-    rollSpeed = 40;
+    rollSpeed = 90;
 
     rollingInterval = setInterval(() => {
         box.textContent = challenges[Math.floor(Math.random() * challenges.length)];
     }, rollSpeed);
 
     // ACCELERATE
-    setTimeout(() => rollSpeed = 30, 200);
-    setTimeout(() => rollSpeed = 20, 400);
+    setTimeout(() => rollSpeed = 70, 200);
+    setTimeout(() => rollSpeed = 60, 400);
 
     // FULL SPEED
-    setTimeout(() => rollSpeed = 15, 800);
+    setTimeout(() => rollSpeed = 55, 800);
 
     // DECELERATE
-    setTimeout(() => rollSpeed = 30, 2000);
-    setTimeout(() => rollSpeed = 50, 2500);
+    setTimeout(() => rollSpeed = 70, 1800);
+    setTimeout(() => rollSpeed = 90, 2300);
 
     setTimeout(stopRolling, rollTime);
 }
@@ -341,7 +355,7 @@ function launchConfetti() {
 }
 
 function randomColor() {
-    const colors = ["#ff003c", "#7a00ff", "#00eaff"];
+    const colors = ["#ff002b", "#7a00ff", "#00eaff"];
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
