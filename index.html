@@ -105,85 +105,102 @@
         100% { transform: translateY(120vh) rotate(720deg); }
     }
 
-    /* Full-screen editor */
    .editor-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.75);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 999;
     padding: 20px;
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(10px) brightness(1.4);
 }
 
 .editor-box {
     width: 100%;
     max-width: 700px;
-    background: rgba(0, 20, 40, 0.95);
-    border-radius: 16px;
+    background: rgba(0, 30, 60, 0.95);
+    border-radius: 18px;
     border: 3px solid #00ffff;
-    box-shadow: 0 0 40px #00ffff, 0 0 80px #00ffff;
-    padding: 25px;
+    box-shadow:
+        0 0 25px #00ffff,
+        0 0 60px #00ffff,
+        inset 0 0 20px rgba(0,255,255,0.4);
+    padding: 30px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
 }
 
+.editor-title {
+    font-size: 2rem;
+    text-align: center;
+    color: #00ffff;
+    text-shadow: 0 0 20px #00ffff;
+}
 
-    .editor-title {
-        font-size: 1.6rem;
-        margin-bottom: 5px;
-        text-align: center;
-    }
+.editor-hint {
+    font-size: 1rem;
+    opacity: 0.9;
+    text-align: center;
+    color: #a8faff;
+}
 
-    .editor-hint {
-        font-size: 0.9rem;
-        opacity: 0.8;
-        text-align: center;
-        margin-bottom: 10px;
-    }
+.editor-textarea {
+    width: 100%;
+    min-height: 260px;
+    resize: vertical;
+    border-radius: 12px;
+    border: 2px solid #00ffff;
+    background: rgba(0, 0, 0, 0.85);
+    color: #00ffff;
+    padding: 12px;
+    font-size: 1rem;
+    font-family: monospace;
+    box-shadow: 0 0 20px #00ffff;
+}
 
-    .editor-textarea {
-        width: 100%;
-        min-height: 220px;
-        resize: vertical;
-        border-radius: 10px;
-        border: 1px solid #00ffff;
-        background: rgba(0,0,0,0.8);
-        color: #fff;
-        padding: 10px;
-        font-size: 0.95rem;
-        font-family: monospace;
-    }
+.editor-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 10px;
+}
 
-    .editor-buttons {
-        display: flex;
-        justify-content: space-between;
-        gap: 10px;
-        margin-top: 10px;
-    }
+.editor-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: 0.2s;
+}
 
-    .editor-btn {
-        flex: 1;
-        padding: 10px;
-        border-radius: 10px;
-        border: none;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 1rem;
-    }
+.editor-save {
+    background: linear-gradient(45deg, #00ff88, #00ffff);
+    color: #000;
+    box-shadow: 0 0 20px #00ffff;
+}
 
-    .editor-save {
-        background: linear-gradient(45deg, #00ff88, #00ffff);
-        color: #000;
-    }
+.editor-save:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 35px #00ffff;
+}
 
-    .editor-cancel {
-        background: rgba(255,255,255,0.1);
-        color: #fff;
-    }
+.editor-cancel {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid #00ffff;
+}
+
+.editor-cancel:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #00ffff;
+}
+
 </style>
 </head>
 
